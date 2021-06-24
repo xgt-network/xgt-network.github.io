@@ -30,7 +30,7 @@ twitter_username: xgt-network
 github_username:  xgt-network
 
 # Build settings
-theme: minima
+theme: jekyll-theme-minimal
 plugins:
   - jekyll-feed
 
