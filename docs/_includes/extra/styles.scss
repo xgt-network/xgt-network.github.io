@@ -15,7 +15,11 @@
 }
 
 .header .title {
-  display: none;
+  text-align: left;
+}
+
+.header .title .fa  {
+  display:none;
 }
 
 a {
@@ -30,6 +34,27 @@ a {
   color: #B79E5D;
 }
 
-.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6, .markdown-body dt {
+.markdown-body h1, 
+.markdown-body h2, 
+.markdown-body h3, 
+.markdown-body h4, 
+.markdown-body h5, 
+.markdown-body h6, 
+.markdown-body dt {
     font-family: "Roboto",sans-serif;
+}
+
+ul.ul-buttons li {
+  list-style:none;
+  display:inline-block;
+}
+ul.ul-buttons li a {
+  display:flex;
+  height: 90px;
+  width: 250px;
+  border: 2px solid #B79E5D;
+  border-radius: 10px;
+  align-items:center;
+  justify-content:center;
+  margin: 5px;
 }

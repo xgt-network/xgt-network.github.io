@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: XGT Network Resources
+title: XGT Documentation Hub
 email: obskein@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   XGT Resources

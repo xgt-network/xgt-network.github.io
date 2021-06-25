@@ -1,4 +1,4 @@
-# XGT JSON RPC API documents
+# JSON RPC API
 
 #### Table of contents
   * [Block API](#block_api)
