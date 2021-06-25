@@ -28,7 +28,7 @@ twitter_username: xgt-network
 github_username:  xgt-network
 
 # Build settings
-theme: minima
+theme: minimal
 remote_theme: minimal
 plugins:
   - jekyll-feed
