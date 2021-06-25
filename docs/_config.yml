@@ -28,8 +28,8 @@ twitter_username: xgt-network
 github_username:  xgt-network
 
 # Build settings
-theme: minima
-remote_theme: rundocs/jekyll-rtd-theme
+theme: just-the-docs
+remote_theme: pmarsceill/just-the-docs
 plugins:
   - jekyll-feed
 
