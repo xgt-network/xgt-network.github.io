@@ -29,7 +29,7 @@ github_username:  xgt-network
 
 # Build settings
 theme: just-the-docs
-remote_theme: pmarsceill/just-the-docs
+remote_theme: rundocs/jekyll-rtd-theme
 plugins:
   - jekyll-feed
 
