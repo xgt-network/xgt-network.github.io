@@ -28,10 +28,10 @@ twitter_username: xgt-network
 github_username:  xgt-network
 
 # Build settings
-theme: just-the-docs
 remote_theme: rundocs/jekyll-rtd-theme
 plugins:
   - jekyll-feed
+  - jekyll-remote-theme
 
 # Exclude from processing.
 # The following items will not be processed, by default.
