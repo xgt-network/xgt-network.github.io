@@ -5,3 +5,31 @@
 .generator { 
   display: none; 
 }
+
+.header { 
+  padding-top: 80px !important;
+  background-image: url(/assets/images/xgt-logo.png);
+  background-size: 158px 58px;
+  background-repeat: no-repeat;
+  background-position: 15px 15px;
+}
+
+.header .title {
+  display: none;
+}
+
+a {
+  color: #946b00;
+}
+
+.markdown-body a { 
+  color: #c19d3f;
+}
+
+.toctree .caption {
+  color: #B79E5D;
+}
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6, .markdown-body dt {
+    font-family: "Roboto",sans-serif;
+}
