@@ -52,6 +52,7 @@ def generate_checkpoints
   end
 
   points.map do |block_num|
+    next if block_num > head_block_number
     puts get_checkpoint(block_num)
   end
 end
