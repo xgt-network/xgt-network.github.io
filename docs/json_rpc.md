@@ -2,8 +2,6 @@
 
 #### Table of contents
   * [Block API](#block_api)
-  * [Chain API](#chain-api)
-  * [Contract API](#contract-api)
   * [Database API](#database-api)
   * [Transaction API](#transaction-api)
   * [Wallet by Key API](#wallet-by-key-api)
@@ -99,7 +97,7 @@ including a list of operations and sample operation formats.
 ```javascript
 ['comment', {}]
 ```
-## Plugin: Block API
+## Block API
 
 Namespace: `block_api`
 
@@ -202,7 +200,7 @@ Returns block information for specified block.
   }
 }
 ```
-## Plugin: Database API
+## Database API
 
 ## Globals
 
@@ -1517,7 +1515,7 @@ description
 // some example code
 ```
 
-## Plugin: Transaction API
+## Transaction API
 
 Namespace: `transaction_api`
 
@@ -1569,7 +1567,7 @@ Get the current status of a transaction indicated by a transaction ID.
         args: signed_block block
         return: void_type broadcast_block_return
 )
-## Plugin: Account by Key API
+## Account by Key API
 
 Namespace: `accounts_by_key_api`
 
@@ -1634,7 +1632,7 @@ Generates a unique wallet name remotely.
   ]
 }
 ```
-## Plugin: Wallet History API
+## Wallet History API
 
 Namespace: `wallet_history_api`
 
