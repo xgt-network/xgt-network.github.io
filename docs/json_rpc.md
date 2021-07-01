@@ -1,4 +1,4 @@
-# JSON RPC API
+# XGT JSON RPC API documents
 
 #### Table of contents
   * [Block API](#block_api)
@@ -109,6 +109,27 @@ Returns block header information for specified block.
 * uint32\_t `block_num` - _Block number._
 #### Returns
 * block\_header `header` - _Header information for specified block or null if block not found._
+#### Example JSON Payload Format
+```javascript
+{
+  block_num: 569557
+}
+```
+#### Example JSON Response
+```javascript
+{
+  "header": {
+    "previous": "0008b0d4a5c5591e25331f3c447352f68eccde4e",
+    "timestamp": "2021-06-24T19:37:44",
+    "witness": "XGT2iJ45vibYdMczNQLqXbvQMNb6vAtTcY9okRoaPF6",
+    "transaction_merkle_root": "544046d6a138bae0c2898f469b55d15f5ed1385f",
+    "extensions": [
+
+    ]
+  }
+}
+```
+---
 
 ### Procedure: get\_block
 Returns block information for specified block.
@@ -116,47 +137,71 @@ Returns block information for specified block.
 * uint32\_t `block_num` - _Block number._
 #### Returns
 * api\_signed\_block\_object `block` - _Block information for specified block or null if block not found._
-## Plugin: Chain API
-
-Namespace: `chain_api`
-
-### Procedure: push_block
-Push a block to the chain.
-#### Arguments
-* signed_block `block` - _The block to be pushed to the chain._
-* bool `currently_syncing` - _description, default false_
-#### Returns
-* bool `success` - _true if the block was successfully pushed, false otherwise._
-* String `error` - _An error if present, null otherwise_
+#### Example JSON Payload Format
 ```javascript
-// some example code
+{
+  block_num: 569557
+}
 ```
+#### Example JSON Response
+```javascript
+{
+  "block": {
+    "previous": "0008b0d4a5c5591e25331f3c447352f68eccde4e",                                                       "timestamp": "2021-06-24T19:37:44",                                                                           "witness": "XGT2iJ45vibYdMczNQLqXbvQMNb6vAtTcY9okRoaPF6",
+      "transaction_merkle_root": "544046d6a138bae0c2898f469b55d15f5ed1385f",
+      "extensions": [
 
----
+      ],
+      "witness_signature": "2093870dd8cb9c5418daf3d369e1fd80742bae5af2d0554f47828379c21b0014b7753ffb5de13bd4c3d2ec9b3a835d7be197df14f0a8d8fa9fb1dcb37d12285416",
+      "transactions": [
+      {
+        "ref_block_num": 45267,
+        "ref_block_prefix": 610474609,
+        "expiration": "2021-06-24T20:37:37",
+        "operations": [
+        {
+          "type": "pow_operation",
+          "value": {
+            "work": {
+              "type": "sha2_pow",
+              "value": {
+                "input": {
+                  "worker_account": "XGTGmzVNN1ucwYWhSQKUyG5wuaGXvhjzZ25sf41WV6B",
+                  "prev_block": "0008b0d3711a6324c043ded65028ce7513e1774d",
+                  "nonce": 1246464257
+                },
+                "proof": "0000001ed73109cc43d0239a39ac20ece7e416e5c77517c92d232de77456592d",
+                "prev_block": "0008b0d3711a6324c043ded65028ce7513e1774d",
+                "pow_summary": 3840766736
+              }
+            },
+            "props": {
+              "account_creation_fee": {
+                "amount": "0",
+                "precision": 8,
+                "nai": "@@000000021"
+              },
+              "maximum_block_size": 131072
+            }
+          }
+        }
+        ],
+        "extensions": [
 
-### Procedure: push_transaction
-Push a transaction to the chain.
-#### Arguments
-* signed_transaction `tx` - _The transaction to push to the chain_
-#### Returns
-* bool `success` - _True if the tx was successfully pushed, false otherwise._
-* String `error` - _An error if present, null otherwise_
-```javascrip
-// some example code
+        ],
+        "signatures": [
+          "204e60ca06af3c50dcc0d7c4d602c2828b794093617b5064a4b4ce2a6e2c74972550cb979bc8052dfe4e0c7192a12752e955286d6462739f61d2b36afb5984efbd"
+        ]
+      }
+      ],
+      "block_id": "0008b0d5e95cd667c50898a36d4b8bfb61a6e41c",
+      "signing_key": "XGT56HuM2Esc4saSkvXSdQ7UTbTxeRvCnHikqeYiDNiKVesrVknX1",
+      "transaction_ids": [
+        "f6d5c0bf692467b5a1fb48814b9bb675874f5404"
+      ]
+  }
+}
 ```
-## Plugin: Contract API
-
-Namespace: `contract_api`
-
-[//]: # (TODO Procedure: get_contract
-        args: bool example = true
-        return: bool example = true
-)
-
-[//]: # (TODO Procedure: list_owner_contracts
-        args: bool example = true
-        return: bool example = true
-)
 ## Plugin: Database API
 
 ## Globals
@@ -173,256 +218,175 @@ Retrieves compile-time constants.
 ```javascript
 {
   "IS_TEST_NET": false,
-  "SMT_MAX_VOTABLE_ASSETS": 2,
-  "SMT_VESTING_WITHDRAW_INTERVAL_SECONDS": 604800,
-  "SMT_UPVOTE_LOCKOUT": 43200,
-  "SMT_EMISSION_MIN_INTERVAL_SECONDS": 21600,
-  "SMT_EMIT_INDEFINITELY": 4294967295,
-  "SMT_MAX_NOMINAL_VOTES_PER_DAY": 1000,
-  "SMT_MAX_VOTES_PER_REGENERATION": 7000,
-  "SMT_DEFAULT_VOTES_PER_REGEN_PERIOD": 50,
-  "SMT_DEFAULT_PERCENT_CURATION_REWARDS": 2500,
-  "SMT_INITIAL_VESTING_PER_UNIT": 1000000,
-  "SMT_BALLAST_SUPPLY_PERCENT": 10,
-  "SMT_MAX_ICO_TIERS": 10,
-  "SBD_SYMBOL": {
-    "nai": "@@000000013",
-    "precision": 3
-  },
-  "XGT_SYMBOL": {
-    "nai": "@@000000021",
-    "precision": 3
-  },
-  "VESTS_SYMBOL": {
-    "nai": "@@000000037",
-    "precision": 6
-  },
-  "SBD_SYMBOL_STR": "SBD",
-  "XGT_SYMBOL_STR": "XGT",
-  "VESTS_SYMBOL_STR": "VESTS",
-  "XGT_INITIAL_VOTE_POWER_RATE": 40,
-  "XGT_REDUCED_VOTE_POWER_RATE": 10,
-  "XGT_100_PERCENT": 10000,
-  "XGT_1_PERCENT": 100,
-  "XGT_ACCOUNT_RECOVERY_REQUEST_EXPIRATION_PERIOD": "86400000000",
-  "XGT_ACTIVE_CHALLENGE_COOLDOWN": "86400000000",
-  "XGT_ACTIVE_CHALLENGE_FEE": {
-    "amount": "2000",
-    "precision": 3,
-    "nai": "@@000000021"
-  },
-  "XGT_ADDRESS_PREFIX": "XGT",
-  "XGT_APR_PERCENT_MULTIPLY_PER_BLOCK": "102035135585887",
-  "XGT_APR_PERCENT_MULTIPLY_PER_HOUR": "119577151364285",
-  "XGT_APR_PERCENT_MULTIPLY_PER_ROUND": "133921203762304",
-  "XGT_APR_PERCENT_SHIFT_PER_BLOCK": 87,
-  "XGT_APR_PERCENT_SHIFT_PER_HOUR": 77,
-  "XGT_APR_PERCENT_SHIFT_PER_ROUND": 83,
-  "XGT_BANDWIDTH_AVERAGE_WINDOW_SECONDS": 604800,
-  "XGT_BANDWIDTH_PRECISION": 1000000,
-  "XGT_BENEFICIARY_LIMIT": 128,
-  "XGT_BLOCKCHAIN_PRECISION": 1000,
-  "XGT_BLOCKCHAIN_PRECISION_DIGITS": 3,
-  "XGT_BLOCKCHAIN_HARDFORK_VERSION": "0.23.0",
-  "XGT_BLOCKCHAIN_VERSION": "0.23.0",
-  "XGT_BLOCK_INTERVAL": 3,
-  "XGT_BLOCKS_PER_DAY": 28800,
-  "XGT_BLOCKS_PER_HOUR": 1200,
-  "XGT_BLOCKS_PER_YEAR": 10512000,
-  "XGT_CASHOUT_WINDOW_SECONDS": 604800,
-  "XGT_CHAIN_ID": "4e08b752aff5f66e1339cb8c0a8bca14c4ebb238655875db7dade86349091197",
-  "XGT_COMMENT_REWARD_FUND_NAME": "comment",
-  "XGT_COMMENT_TITLE_LIMIT": 256,
-  "XGT_CONTENT_APR_PERCENT": 3875,
-  "XGT_CONTENT_CONSTANT_HF0": "2000000000000",
-  "XGT_CONTENT_CONSTANT_HF21": "2000000000000",
-  "XGT_CONTENT_REWARD_PERCENT_HF16": 7500,
-  "XGT_CONTENT_REWARD_PERCENT_HF21": 6500,
-  "XGT_CONVERSION_DELAY": "302400000000",
-  "XGT_CONVERSION_DELAY_PRE_HF_16": "604800000000",
-  "XGT_CREATE_ACCOUNT_WITH_XGT_MODIFIER": 30,
-  "XGT_CURATE_APR_PERCENT": 3875,
-  "XGT_CUSTOM_OP_DATA_MAX_LENGTH": 8192,
-  "XGT_CUSTOM_OP_ID_MAX_LENGTH": 32,
-  "XGT_DEFAULT_SBD_INTEREST_RATE": 1000,
-  "XGT_DOWNVOTE_POOL_PERCENT_HF21": 2500,
-  "XGT_EQUIHASH_K": 6,
-  "XGT_EQUIHASH_N": 140,
-  "XGT_FEED_HISTORY_WINDOW": 84,
-  "XGT_FEED_HISTORY_WINDOW_PRE_HF_16": 168,
-  "XGT_FEED_INTERVAL_BLOCKS": 1200,
-  "XGT_GENESIS_TIME": "2020-04-14T04:53:35",
-  "XGT_HARDFORK_REQUIRED_WITNESSES": 17,
-  "XGT_HF21_CONVERGENT_LINEAR_RECENT_CLAIMS": "503600561838938636",
-  "XGT_INFLATION_NARROWING_PERIOD": 250000,
-  "XGT_INFLATION_RATE_START_PERCENT": 978,
-  "XGT_INFLATION_RATE_STOP_PERCENT": 95,
-  "XGT_INIT_MINER_NAME": "XGT0000000000000",
-  "XGT_INIT_PUBLIC_KEY_STR": "XGT6LLegbAgLAy28EHrffBVuANFWcFgmqRMW13wBmTExqFE9SCkg4",
-  "XGT_INIT_SUPPLY": "250000000000",
-  "XGT_SBD_INIT_SUPPLY": "7000000000",
-  "XGT_INIT_TIME": "1970-01-01T00:00:00",
-  "XGT_IRREVERSIBLE_THRESHOLD": 7500,
-  "XGT_LIQUIDITY_APR_PERCENT": 750,
-  "XGT_LIQUIDITY_REWARD_BLOCKS": 1200,
-  "XGT_LIQUIDITY_REWARD_PERIOD_SEC": 3600,
-  "XGT_LIQUIDITY_TIMEOUT_SEC": "604800000000",
-  "XGT_MAX_ACCOUNT_CREATION_FEE": 1000000000,
-  "XGT_MAX_ACCOUNT_NAME_LENGTH": 16,
-  "XGT_MAX_ACCOUNT_WITNESS_VOTES": 30,
-  "XGT_MAX_ASSET_WHITELIST_AUTHORITIES": 10,
-  "XGT_MAX_AUTHORITY_MEMBERSHIP": 40,
-  "XGT_MAX_BLOCK_SIZE": 393216000,
-  "XGT_SOFT_MAX_BLOCK_SIZE": 2097152,
-  "XGT_MAX_CASHOUT_WINDOW_SECONDS": 1209600,
-  "XGT_MAX_COMMENT_DEPTH": 65535,
-  "XGT_MAX_COMMENT_DEPTH_PRE_HF17": 6,
-  "XGT_MAX_FEED_AGE_SECONDS": 604800,
-  "XGT_MAX_INSTANCE_ID": "281474976710655",
-  "XGT_MAX_MEMO_SIZE": 2048,
-  "XGT_MAX_WITNESSES": 10,
-  "XGT_MAX_VOTED_WITNESSES": 0,
-  "XGT_MAX_MINER_WITNESSES": 10,
-  "XGT_MAX_PERMLINK_LENGTH": 256,
-  "XGT_MAX_PROXY_RECURSION_DEPTH": 4,
-  "XGT_MAX_RATION_DECAY_RATE": 1000000,
-  "XGT_MAX_RESERVE_RATIO": 20000,
-  "XGT_MAX_SATOSHIS": "4611686018427387903",
-  "XGT_MAX_SHARE_SUPPLY": "1000000000000000",
-  "XGT_MAX_SIG_CHECK_DEPTH": 2,
-  "XGT_MAX_SIG_CHECK_ACCOUNTS": 125,
-  "XGT_MAX_TIME_UNTIL_EXPIRATION": 3600,
-  "XGT_MAX_TRANSACTION_SIZE": 65536,
-  "XGT_MAX_UNDO_HISTORY": 10000,
-  "XGT_MAX_URL_LENGTH": 127,
-  "XGT_MAX_VOTE_CHANGES": 5,
-  "XGT_MAX_WITHDRAW_ROUTES": 10,
-  "XGT_MAX_WITNESS_URL_LENGTH": 2048,
-  "XGT_MIN_ACCOUNT_CREATION_FEE": 1,
-  "XGT_MIN_ACCOUNT_NAME_LENGTH": 3,
-  "XGT_MIN_BLOCK_SIZE_LIMIT": 65536,
-  "XGT_MIN_BLOCK_SIZE": 115,
-  "XGT_MIN_CONTENT_REWARD": {
-    "amount": "1000",
-    "precision": 3,
-    "nai": "@@000000021"
-  },
-  "XGT_MIN_CURATE_REWARD": {
-    "amount": "1000",
-    "precision": 3,
-    "nai": "@@000000021"
-  },
-  "XGT_MIN_PERMLINK_LENGTH": 0,
-  "XGT_MIN_REPLY_INTERVAL": 20000000,
-  "XGT_MIN_REPLY_INTERVAL_HF20": 3000000,
-  "XGT_MIN_ROOT_COMMENT_INTERVAL": 300000000,
-  "XGT_MIN_COMMENT_EDIT_INTERVAL": 3000000,
-  "XGT_MIN_VOTE_INTERVAL_SEC": 3,
-  "XGT_MINER_ACCOUNT": "XGT0000000000001",
-  "XGT_MINER_PAY_PERCENT": 100,
-  "XGT_MIN_FEEDS": 3,
-  "XGT_MINING_REWARD": {
-    "amount": "1000",
-    "precision": 3,
-    "nai": "@@000000021"
-  },
-  "XGT_MIN_LIQUIDITY_REWARD": {
-    "amount": "1200000",
-    "precision": 3,
-    "nai": "@@000000021"
-  },
-  "XGT_MIN_LIQUIDITY_REWARD_PERIOD_SEC": 60000000,
-  "XGT_MIN_PAYOUT_SBD": {
-    "amount": "20",
-    "precision": 3,
-    "nai": "@@000000013"
-  },
-  "XGT_MIN_POW_REWARD": {
-    "amount": "1000",
-    "precision": 3,
-    "nai": "@@000000021"
-  },
-  "XGT_MIN_PRODUCER_REWARD": {
-    "amount": "1000",
-    "precision": 3,
-    "nai": "@@000000021"
-  },
-  "XGT_MIN_TRANSACTION_EXPIRATION_LIMIT": 15,
-  "XGT_MIN_TRANSACTION_SIZE_LIMIT": 1024,
-  "XGT_MIN_UNDO_HISTORY": 10,
-  "XGT_NULL_ACCOUNT": "XGT0000000000002",
-  "XGT_NUM_INIT_MINERS": 1,
-  "XGT_RECOVERY_AUTH_HISTORY_TRACKING_START_BLOCK_NUM": 3186477,
-  "XGT_RECOVERY_AUTH_RECOVERY_PERIOD": "2592000000000",
-  "XGT_RECOVERY_CHALLENGE_COOLDOWN": "86400000000",
-  "XGT_RECOVERY_CHALLENGE_FEE": {
-    "amount": "30000",
-    "precision": 3,
-    "nai": "@@000000021"
-  },
-  "XGT_RECOVERY_UPDATE_LIMIT": 3600000000,
-  "XGT_POST_AVERAGE_WINDOW": 86400,
-  "XGT_POST_REWARD_FUND_NAME": "post",
-  "XGT_POST_WEIGHT_CONSTANT": 1600000000,
-  "XGT_POW_APR_PERCENT": 750,
-  "XGT_PRODUCER_APR_PERCENT": 750,
-  "XGT_PROXY_TO_SELF_ACCOUNT": "",
-  "XGT_SBD_INTEREST_COMPOUND_INTERVAL_SEC": 2592000,
-  "XGT_SECONDS_PER_YEAR": 31536000,
-  "XGT_PROPOSAL_FUND_PERCENT_HF0": 0,
-  "XGT_PROPOSAL_FUND_PERCENT_HF21": 1000,
-  "XGT_RECENT_RSHARES_DECAY_TIME_HF19": "1296000000000",
-  "XGT_RECENT_RSHARES_DECAY_TIME_HF17": "2592000000000",
-  "XGT_REVERSE_AUCTION_WINDOW_SECONDS": 300,
-  "XGT_ROOT_POST_PARENT": "",
-  "XGT_SAVINGS_WITHDRAW_REQUEST_LIMIT": 100,
-  "XGT_SAVINGS_WITHDRAW_TIME": "259200000000",
-  "XGT_SBD_START_PERCENT_HF14": 200,
-  "XGT_SBD_START_PERCENT_HF20": 900,
-  "XGT_SBD_STOP_PERCENT_HF14": 500,
-  "XGT_SBD_STOP_PERCENT_HF20": 1000,
-  "XGT_SECOND_CASHOUT_WINDOW": 2592000,
-  "XGT_SOFT_MAX_COMMENT_DEPTH": 255,
-  "XGT_START_MINER_VOTING_BLOCK": 864000,
-  "XGT_START_VESTING_BLOCK": 201600,
-  "XGT_TEMP_ACCOUNT": "XGT0000000000003",
-  "XGT_UPVOTE_LOCKOUT_SECONDS": 43200,
-  "XGT_VESTING_FUND_PERCENT_HF16": 1500,
-  "XGT_VESTING_WITHDRAW_INTERVALS": 13,
-  "XGT_VESTING_WITHDRAW_INTERVAL_SECONDS": 604800,
-  "XGT_VOTE_DUST_THRESHOLD": 50000000,
-  "XGT_VOTING_MANA_REGENERATION_SECONDS": 432000,
-  "XGT_VIRTUAL_SCHEDULE_LAP_LENGTH": "18446744073709551615",
-  "XGT_VIRTUAL_SCHEDULE_LAP_LENGTH2": "340282366920938463463374607431768211455",
-  "XGT_VOTES_PER_PERIOD_SMT_HF": 50,
-  "XGT_MAX_LIMIT_ORDER_EXPIRATION": 2419200,
-  "XGT_RD_MIN_DECAY_BITS": 6,
-  "XGT_RD_MAX_DECAY_BITS": 32,
-  "XGT_RD_DECAY_DENOM_SHIFT": 36,
-  "XGT_RD_MAX_POOL_BITS": 64,
-  "XGT_RD_MAX_BUDGET_1": "17179869183",
-  "XGT_RD_MAX_BUDGET_2": 268435455,
-  "XGT_RD_MAX_BUDGET_3": 2147483647,
-  "XGT_RD_MAX_BUDGET": 268435455,
-  "XGT_RD_MIN_DECAY": 64,
-  "XGT_RD_MIN_BUDGET": 1,
-  "XGT_RD_MAX_DECAY": 4294967295,
-  "XGT_ACCOUNT_SUBSIDY_PRECISION": 10000,
-  "XGT_WITNESS_SUBSIDY_BUDGET_PERCENT": 12500,
-  "XGT_WITNESS_SUBSIDY_DECAY_PERCENT": 100000,
-  "XGT_DEFAULT_ACCOUNT_SUBSIDY_DECAY": 347321,
-  "XGT_DEFAULT_ACCOUNT_SUBSIDY_BUDGET": 797,
-  "XGT_DECAY_BACKSTOP_PERCENT": 9000,
-  "XGT_BLOCK_GENERATION_POSTPONED_TX_LIMIT": 5,
-  "XGT_PENDING_TRANSACTION_EXECUTION_LIMIT": 200000,
-  "XGT_TREASURY_ACCOUNT": "XGT0000000000004",
-  "XGT_TREASURY_FEE": 10000,
-  "XGT_PROPOSAL_MAINTENANCE_PERIOD": 3600,
-  "XGT_PROPOSAL_MAINTENANCE_CLEANUP": 86400,
-  "XGT_PROPOSAL_SUBJECT_MAX_LENGTH": 80,
-  "XGT_PROPOSAL_MAX_IDS_NUMBER": 5,
-  "XGT_NETWORK_TYPE": "mainnet",
-  "XGT_DB_FORMAT_VERSION": "1"
+    "XTT_MAX_VOTABLE_ASSETS": 2,
+    "XTT_UPVOTE_LOCKOUT": 43200,
+    "XTT_EMIT_INDEFINITELY": 4294967295,
+    "XTT_MAX_NOMINAL_VOTES_PER_DAY": 1000,
+    "XTT_DEFAULT_VOTES_PER_REGEN_PERIOD": 50,
+    "XTT_BALLAST_SUPPLY_PERCENT": 10,
+    "XTT_MAX_ICO_TIERS": 10,
+    "XGT_SYMBOL": {
+      "nai": "@@000000021",
+      "precision": 8
+    },
+    "XGT_SYMBOL_STR": "XGT",
+    "XGT_INITIAL_VOTE_POWER_RATE": 40,
+    "XGT_REDUCED_VOTE_POWER_RATE": 10,
+    "XGT_100_PERCENT": 10000,
+    "XGT_1_PERCENT": 100,
+    "XGT_WALLET_RECOVERY_REQUEST_EXPIRATION_PERIOD": "86400000000",
+    "XGT_ACTIVE_CHALLENGE_COOLDOWN": "86400000000",
+    "XGT_ACTIVE_CHALLENGE_FEE": {
+      "amount": "2000",
+      "precision": 8,
+      "nai": "@@000000021"
+    },
+    "XGT_ADDRESS_PREFIX": "XGT",
+    "XGT_WALLET_NAME_LENGTH": 40,
+    "XGT_APR_PERCENT_MULTIPLY_PER_BLOCK": "102035135585887",
+    "XGT_APR_PERCENT_MULTIPLY_PER_HOUR": "119577151364285",
+    "XGT_APR_PERCENT_MULTIPLY_PER_ROUND": "133921203762304",
+    "XGT_APR_PERCENT_SHIFT_PER_BLOCK": 87,
+    "XGT_APR_PERCENT_SHIFT_PER_HOUR": 77,
+    "XGT_APR_PERCENT_SHIFT_PER_ROUND": 83,
+    "XGT_BANDWIDTH_AVERAGE_WINDOW_SECONDS": 604800,
+    "XGT_BANDWIDTH_PRECISION": 1000000,
+    "XGT_BLOCKCHAIN_PRECISION": 100000000,
+    "XGT_BLOCKCHAIN_PRECISION_DIGITS": 8,
+    "XGT_BLOCKCHAIN_HARDFORK_VERSION": "0.0.0",
+    "XGT_BLOCKCHAIN_VERSION": "0.0.0",
+    "XGT_BLOCK_INTERVAL": 5,
+    "XGT_BLOCKS_PER_DAY": 17280,
+    "XGT_BLOCKS_PER_HOUR": 720,
+    "XGT_BLOCKS_PER_YEAR": 6307200,
+    "XGT_CHAIN_ID": "4e08b752aff5f66e1339cb8c0a8bca14c4ebb238655875db7dade86349091197",
+    "XGT_COMMENT_TITLE_LIMIT": 256,
+    "XGT_CONTENT_APR_PERCENT": 3875,
+    "XGT_CONTENT_CONSTANT_HF0": "2000000000000",
+    "XGT_CONTENT_CONSTANT_HF21": "2000000000000",
+    "XGT_CREATE_WALLET_WITH_XGT_MODIFIER": 30,
+    "XGT_CURATE_APR_PERCENT": 3875,
+    "XGT_CUSTOM_OP_DATA_MAX_LENGTH": 8192,
+    "XGT_CUSTOM_OP_ID_MAX_LENGTH": 32,
+    "XGT_DOWNVOTE_POOL_PERCENT_HF21": 2500,
+    "XGT_FEED_INTERVAL_BLOCKS": 720,
+    "XGT_GENESIS_TIME": "2020-04-14T04:53:35",
+    "XGT_HARDFORK_REQUIRED_WITNESSES": 17,
+    "XGT_HF21_CONVERGENT_LINEAR_RECENT_CLAIMS": "503600561838938636",
+    "XGT_INFLATION_NARROWING_PERIOD": 250000,
+    "XGT_INFLATION_RATE_START_PERCENT": 978,
+    "XGT_INFLATION_RATE_STOP_PERCENT": 95,
+    "XGT_INIT_MINER_NAME": "XGT0000000000000000000000000000000000000000",
+    "XGT_INIT_PUBLIC_KEY_STR": "XGT7dDoJbrmueAw431pPbjLDoRhqFCC5Xs5o6f1cZLepWEpkcy3Tc",
+    "XGT_INIT_SUPPLY": "1872936875000000",
+    "XGT_INIT_TIME": "1970-01-01T00:00:00",
+    "XGT_IRREVERSIBLE_THRESHOLD": 7500,
+    "XGT_MAX_WALLET_CREATION_FEE": 0,
+    "XGT_MAX_WALLET_NAME_LENGTH": 16,
+    "XGT_MAX_ASSET_WHITELIST_AUTHORITIES": 10,
+    "XGT_MAX_AUTHORITY_MEMBERSHIP": 40,
+    "XGT_MAX_BLOCK_SIZE": 655360000,
+    "XGT_SOFT_MAX_BLOCK_SIZE": 2097152,
+    "XGT_MAX_COMMENT_DEPTH": 65535,
+    "XGT_MAX_COMMENT_DEPTH_PRE_HF17": 6,
+    "XGT_MAX_FEED_AGE_SECONDS": 604800,
+    "XGT_MAX_INSTANCE_ID": "281474976710655",
+    "XGT_MAX_MEMO_SIZE": 2048,
+    "XGT_MAX_WITNESSES": 10,
+    "XGT_MAX_VOTED_WITNESSES": 0,
+    "XGT_MAX_MINER_WITNESSES": 10,
+    "XGT_MAX_PERMLINK_LENGTH": 256,
+    "XGT_MAX_RATION_DECAY_RATE": 1000000,
+    "XGT_MAX_RESERVE_RATIO": 20000,
+    "XGT_MAX_SATOSHIS": "4611686018427387903",
+    "XGT_MAX_SHARE_SUPPLY": "1000000000000000",
+    "XGT_MAX_SIG_CHECK_DEPTH": 2,
+    "XGT_MAX_SIG_CHECK_WALLETS": 125,
+    "XGT_MAX_TIME_UNTIL_EXPIRATION": 3600,
+    "XGT_MAX_TRANSACTION_SIZE": 65536,
+    "XGT_MAX_UNDO_HISTORY": 10000,
+    "XGT_MAX_URL_LENGTH": 127,
+    "XGT_MAX_VOTE_CHANGES": 5,
+    "XGT_MAX_WITNESS_URL_LENGTH": 2048,
+    "XGT_MIN_WALLET_CREATION_FEE": 0,
+    "XGT_MIN_WALLET_NAME_LENGTH": 3,
+    "XGT_MIN_BLOCK_SIZE_LIMIT": 65536,
+    "XGT_MIN_BLOCK_SIZE": 115,
+    "XGT_MIN_PERMLINK_LENGTH": 0,
+    "XGT_MIN_REPLY_INTERVAL": 20000000,
+    "XGT_MIN_REPLY_INTERVAL_HF20": 3000000,
+    "XGT_MIN_ROOT_COMMENT_INTERVAL": 300000000,
+    "XGT_MIN_COMMENT_EDIT_INTERVAL": 3000000,
+    "XGT_MIN_VOTE_INTERVAL_SEC": 3,
+    "XGT_MINER_WALLET": "XGT0000000000000000000000000000000000000001",
+    "XGT_MINER_PAY_PERCENT": 100,
+    "XGT_MIN_FEEDS": 3,
+    "XGT_MINING_BLOCKS_PER_SECOND": "0.25000000000000000",
+    "XGT_MINING_BTC_BLOCKS_PER_SECOND": "0.00166666670702398",
+    "XGT_MINING_RELATIVE_SPEED": "150.00000000000000000",
+    "XGT_STARTING_OFFSET": 0,
+    "XGT_MINING_REWARD": {
+      "amount": "4166166",
+      "precision": 8,
+      "nai": "@@000000021"
+    },
+    "XGT_MIN_POW_REWARD": {
+      "amount": "4166166",
+      "precision": 8,
+      "nai": "@@000000021"
+    },
+    "XGT_MINING_ADJUSTMENT_MAX_FACTOR": "4.00000000000000000",
+    "XGT_MINING_REWARD_HALVING_INTERVAL": 30150000,
+    "XGT_MINING_RECALC_EVERY_N_BLOCKS": 302400,
+    "XGT_MINING_TARGET_START": "000000ffff000000000000000000000000000000000000000000000000000000",
+    "XGT_MINING_TARGET_MAX": "00000ffff0000000000000000000000000000000000000000000000000000000",
+    "XGT_MIN_TRANSACTION_EXPIRATION_LIMIT": 25,
+    "XGT_MIN_TRANSACTION_SIZE_LIMIT": 1024,
+    "XGT_MIN_UNDO_HISTORY": 10,
+    "XGT_NULL_WALLET": "XGT0000000000000000000000000000000000000002",
+    "XGT_RECOVERY_AUTH_HISTORY_TRACKING_START_BLOCK_NUM": 3186477,
+    "XGT_RECOVERY_AUTH_RECOVERY_PERIOD": "2592000000000",
+    "XGT_RECOVERY_CHALLENGE_COOLDOWN": "86400000000",
+    "XGT_RECOVERY_CHALLENGE_FEE": {
+      "amount": "30000",
+      "precision": 8,
+      "nai": "@@000000021"
+    },
+    "XGT_RECOVERY_UPDATE_LIMIT": 3600000000,
+    "XGT_POST_AVERAGE_WINDOW": 86400,
+    "XGT_POST_WEIGHT_CONSTANT": 1600000000,
+    "XGT_POW_APR_PERCENT": 750,
+    "XGT_PRODUCER_APR_PERCENT": 750,
+    "XGT_SECONDS_PER_YEAR": 31536000,
+    "XGT_REVERSE_AUCTION_WINDOW_SECONDS": 300,
+    "XGT_ROOT_POST_PARENT": "",
+    "XGT_SOFT_MAX_COMMENT_DEPTH": 255,
+    "XGT_START_MINER_VOTING_BLOCK": 518400,
+    "XGT_TEMP_WALLET": "XGT0000000000000000000000000000000000000003",
+    "XGT_UPVOTE_LOCKOUT_SECONDS": 43200,
+    "XGT_VOTE_DUST_THRESHOLD": 50000000,
+    "XGT_VOTING_ENERGY_REGENERATION_SECONDS": 86400,
+    "XGT_VIRTUAL_SCHEDULE_LAP_LENGTH": "18446744073709551615",
+    "XGT_VIRTUAL_SCHEDULE_LAP_LENGTH2": "340282366920938463463374607431768211455",
+    "XGT_VOTES_PER_PERIOD_XTT_HF": 50,
+    "XGT_MAX_LIMIT_ORDER_EXPIRATION": 2419200,
+    "XGT_RD_MIN_DECAY_BITS": 6,
+    "XGT_RD_MAX_DECAY_BITS": 32,
+    "XGT_RD_DECAY_DENOM_SHIFT": 36,
+    "XGT_RD_MAX_POOL_BITS": 64,
+    "XGT_RD_MAX_BUDGET_1": "17179869183",
+    "XGT_RD_MAX_BUDGET_2": 268435455,
+    "XGT_RD_MAX_BUDGET_3": 2147483647,
+    "XGT_RD_MAX_BUDGET": 268435455,
+    "XGT_RD_MIN_DECAY": 64,
+    "XGT_RD_MIN_BUDGET": 1,
+    "XGT_RD_MAX_DECAY": 4294967295,
+    "XGT_DECAY_BACKSTOP_PERCENT": 9000,
+    "XGT_BLOCK_GENERATION_POSTPONED_TX_LIMIT": 5,
+    "XGT_PENDING_TRANSACTION_EXECUTION_LIMIT": 200000,
+    "XGT_TREASURY_WALLET": "XGT0000000000000000000000000000000000000004",
+    "XGT_NETWORK_TYPE": "mainnet",
+    "XGT_DB_FORMAT_VERSION": "1"
 }
 ```
 
@@ -437,9 +401,9 @@ Returns version information and chain id of running node.
 #### Example JSON Response
 ```javascript
 {
-  "blockchain_version": "0.23.0",
-  "steem_revision": "9fa5e99660ef4bd1080d94aa272675bc316781f6",
-  "fc_revision": "9fa5e99660ef4bd1080d94aa272675bc316781f6",
+  "blockchain_version": "0.0.0",
+  "xgt_revision": "d67018998dd4feebab81042879d5128a175c03f2",
+  "fc_revision": "d67018998dd4feebab81042879d5128a175c03f2",
   "chain_id": "4e08b752aff5f66e1339cb8c0a8bca14c4ebb238655875db7dade86349091197"
 }
 ```
@@ -456,170 +420,44 @@ Retrieves global properties.
 ```javascript
 {
   "id": 0,
-  "head_block_number": 50,
-  "head_block_id": "0000003289d845d2ec1c32f08ebd6831032bcdff",
-  "time": "2020-05-02T12:39:06",
-  "current_witness": "XGT0000000000000",
-  "total_pow": "18446744073709551615",
-  "num_pow_witnesses": 0,
+  "head_block_number": 863195,
+  "head_block_id": "000d2bdb8539a02d5789cb58b77766c4e7d0d2d2",
+  "time": "2021-07-01T09:32:49",
+  "current_witness": "XGT4vpiys9doDjNs7VkQo9R3tzeHtBPESJWfTS9wf7L",
+  "total_pow": 889805,
+  "num_pow_witnesses": 889806,
   "virtual_supply": {
-    "amount": "250000153357",
-    "precision": 3,
+    "amount": "1872936875000000",
+    "precision": 8,
     "nai": "@@000000021"
   },
   "current_supply": {
-    "amount": "250000141757",
-    "precision": 3,
+    "amount": "1872936875000000",
+    "precision": 8,
     "nai": "@@000000021"
   },
   "confidential_supply": {
     "amount": "0",
-    "precision": 3,
+    "precision": 8,
     "nai": "@@000000021"
   },
-  "init_sbd_supply": {
-    "amount": "7000000000",
-    "precision": 3,
-    "nai": "@@000000013"
-  },
-  "current_sbd_supply": {
-    "amount": "11600",
-    "precision": 3,
-    "nai": "@@000000013"
-  },
-  "confidential_sbd_supply": {
-    "amount": "0",
-    "precision": 3,
-    "nai": "@@000000013"
-  },
-  "total_vesting_fund_steem": {
-    "amount": "66207",
-    "precision": 3,
-    "nai": "@@000000021"
-  },
-  "total_vesting_shares": {
-    "amount": "1172891",
-    "precision": 6,
-    "nai": "@@000000037"
-  },
-  "total_reward_fund_steem": {
-    "amount": "0",
-    "precision": 3,
-    "nai": "@@000000021"
-  },
-  "total_reward_shares2": "0",
-  "pending_rewarded_vesting_shares": {
-    "amount": "0",
-    "precision": 6,
-    "nai": "@@000000037"
-  },
-  "pending_rewarded_vesting_steem": {
-    "amount": "0",
-    "precision": 3,
-    "nai": "@@000000021"
-  },
-  "sbd_interest_rate": 0,
-  "sbd_print_rate": 10000,
-  "maximum_block_size": 393216000,
+  "maximum_block_size": 655360000,
   "required_actions_partition_percent": 0,
-  "current_aslot": 527711,
-  "recent_slots_filled": "1407374883553279",
-  "participation_count": 49,
-  "last_irreversible_block_num": 40,
-  "target_votes_per_period": 10,
-  "delegation_return_period": 432000,
+  "current_aslot": 0,
+  "recent_slots_filled": "340282366920938463463374607431768211455",
+  "participation_count": 128,
+  "last_irreversible_block_num": 863185,
+  "target_votes_per_period": 40,
+  "delegation_return_period": 86400,
   "reverse_auction_seconds": 300,
-  "available_account_subsidies": 39850,
-  "sbd_stop_percent": 1000,
-  "sbd_start_percent": 900,
-  "next_maintenance_time": "2020-05-02T13:36:35",
-  "last_budget_time": "2020-05-02T12:36:35",
-  "content_reward_percent": 6500,
-  "vesting_reward_percent": 1500,
-  "sps_fund_percent": 1000,
-  "sps_interval_ledger": {
-    "amount": "11368",
-    "precision": 3,
-    "nai": "@@000000013"
-  },
-  "downvote_pool_percent": 2500,
-  "smt_creation_fee": {
+  "next_maintenance_time": "2020-04-14T04:53:35",
+  "last_budget_time": "2020-04-14T04:53:35",
+  "downvote_pool_percent": 0,
+  "xtt_creation_fee": {
     "amount": "1000",
-    "precision": 3,
-    "nai": "@@000000013"
+    "precision": 8,
+    "nai": "@@000000021"
   }
-}
-```
-
----
-
-### Procedure:  get_witness_schedule
-Retrieves witness schedule.
-#### Example JSON Payload Format
-```javascript
-{}
-```
-#### Example JSON Response
-```javascript
-{
-  "id": 0,
-  "current_virtual_time": "0",
-  "next_shuffle_block_num": 71,
-  "current_shuffled_witnesses": [
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000"
-  ],
-  "num_scheduled_witnesses": 1,
-  "elected_weight": 1,
-  "timeshare_weight": 5,
-  "miner_weight": 1,
-  "witness_pay_normalization_factor": 2,
-  "median_props": {
-    "account_creation_fee": {
-      "amount": "30",
-      "precision": 3,
-      "nai": "@@000000021"
-    },
-    "maximum_block_size": 131072,
-    "sbd_interest_rate": 1000,
-    "account_subsidy_budget": 797,
-    "account_subsidy_decay": 347321
-  },
-  "majority_version": "0.0.0",
-  "max_voted_witnesses": 0,
-  "max_miner_witnesses": 10,
-  "hardfork_required_witnesses": 17,
-  "account_subsidy_rd": {
-    "resource_unit": 10000,
-    "budget_per_time_unit": 797,
-    "pool_eq": 157691079,
-    "max_pool_size": 157691079,
-    "decay_params": {
-      "decay_per_time_unit": 347321,
-      "decay_per_time_unit_denom_shift": 36
-    },
-    "min_decay": 0
-  },
-  "account_subsidy_witness_rd": {
-    "resource_unit": 10000,
-    "budget_per_time_unit": 996,
-    "pool_eq": 19706439,
-    "max_pool_size": 19706439,
-    "decay_params": {
-      "decay_per_time_unit": 3473210,
-      "decay_per_time_unit_denom_shift": 36
-    },
-    "min_decay": 0
-  },
-  "min_witness_account_subsidy_decay": 0
 }
 ```
 
@@ -636,66 +474,12 @@ Retrieves hard fork properties.
 {
   "id": 0,
   "processed_hardforks": [
-    "2020-04-14T04:53:35",
-    "2016-04-25T17:30:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "1970-01-01T00:00:00",
-    "2019-08-27T15:00:00",
-    "2019-08-29T15:00:00"
+    "2020-04-14T04:53:35"
   ],
-  "last_hardfork": 22,
-  "current_hardfork_version": "0.22.0",
-  "next_hardfork": "0.22.0",
-  "next_hardfork_time": "2020-04-14T04:53:35"
-}
-```
-
----
-
-### Procedure:  get_reward_funds
-Retrieves reward funds.
-#### Example JSON Payload Format
-```javascript
-{}
-```
-#### Example JSON Response
-```javascript
-{
-  "funds": [
-    {
-      "id": 0,
-      "name": "post",
-      "reward_balance": {
-        "amount": "208518",
-        "precision": 3,
-        "nai": "@@000000021"
-      },
-      "recent_claims": "340246401375486094597941380380970578510",
-      "last_update": "2020-05-02T12:43:30",
-      "content_constant": "2000000000000",
-      "percent_curation_rewards": 5000,
-      "percent_content_rewards": 10000,
-      "author_reward_curve": "convergent_linear",
-      "curation_reward_curve": "convergent_square_root"
-    }
-  ]
+  "last_hardfork": 0,
+  "current_hardfork_version": "0.0.0",
+  "next_hardfork": "0.0.0",
+  "next_hardfork_time": "1970-01-01T00:00:00"
 }
 ```
 
@@ -712,9 +496,9 @@ Return version information and chain_id of running node
 #### Example JSON Payload Format
 ```javascript
 {
-  "start": 0,
-  "limit": 1,
-  "order": "by_name"
+  start: 0,
+  limit: 3,
+  order: "by_name"
 }
 ```
 #### Example JSON Response
@@ -723,7 +507,7 @@ Return version information and chain_id of running node
   "witnesses": [
     {
       "id": 0,
-      "owner": "XGT0000000000000",
+      "owner": "XGT0000000000000000000000000000000000000000",
       "created": "1970-01-01T00:00:00",
       "url": "",
       "votes": 0,
@@ -731,39 +515,76 @@ Return version information and chain_id of running node
       "virtual_position": "0",
       "virtual_scheduled_time": "340282366920938463463374607431768211455",
       "total_missed": 0,
-      "last_aslot": 451118,
-      "last_confirmed_block_num": 555,
-      "pow_worker": 0,
-      "signing_key": "XGT6LLegbAgLAy28EHrffBVuANFWcFgmqRMW13wBmTExqFE9SCkg4",
+      "last_aslot": 0,
+      "last_confirmed_block_num": 0,
+      "pow_worker": 93538,
+      "signing_key": "XGT7dDoJbrmueAw431pPbjLDoRhqFCC5Xs5o6f1cZLepWEpkcy3Tc",
       "props": {
         "account_creation_fee": {
-          "amount": "30",
-          "precision": 3,
+          "amount": "0",
+          "precision": 8,
           "nai": "@@000000021"
         },
-        "maximum_block_size": 131072,
-        "sbd_interest_rate": 1000,
-        "account_subsidy_budget": 797,
-        "account_subsidy_decay": 347321
+        "maximum_block_size": 131072
       },
-      "sbd_exchange_rate": {
-        "base": {
-          "amount": "0",
-          "precision": 3,
-          "nai": "@@000000021"
-        },
-        "quote": {
-          "amount": "0",
-          "precision": 3,
-          "nai": "@@000000021"
-        }
-      },
-      "last_sbd_exchange_update": "1970-01-01T00:00:00",
       "last_work": "0000000000000000000000000000000000000000000000000000000000000000",
-      "running_version": "0.23.0",
-      "hardfork_version_vote": "0.23.0",
-      "hardfork_time_vote": "2020-08-21T00:46:40",
-      "available_witness_account_subsidies": 536662
+      "running_version": "0.0.0",
+      "hardfork_version_vote": "0.0.0",
+      "hardfork_time_vote": "2020-04-14T04:53:35"
+    },
+    {
+      "id": 165,
+      "owner": "XGTBTR3cWLJVythoqRynqRNtgiDRe68v17KKJbbpLuv",
+      "created": "2021-06-28T01:14:11",
+      "url": "http://test.host",
+      "votes": 0,
+      "virtual_last_update": "0",
+      "virtual_position": "0",
+      "virtual_scheduled_time": "340282366920938463463374607431768211455",
+      "total_missed": 0,
+      "last_aslot": 0,
+      "last_confirmed_block_num": 0,
+      "pow_worker": 812235,
+      "signing_key": "XGT5KeDHoGs3jfhLSRMDoMvWgRDXbMsgmVCBJHeye6pXpEawiokaL",
+      "props": {
+        "account_creation_fee": {
+          "amount": "0",
+          "precision": 8,
+          "nai": "@@000000021"
+        },
+        "maximum_block_size": 131072
+      },
+      "last_work": "0000000000000000000000000000000000000000000000000000000000000000",
+      "running_version": "0.0.0",
+      "hardfork_version_vote": "0.0.0",
+      "hardfork_time_vote": "2020-04-14T04:53:35"
+    },
+    {
+      "id": 155,
+      "owner": "XGT7vdjEsVeDz5tifitKBPm3rcCTExLp1BtwvD3NvJr",
+      "created": "2021-06-20T05:00:28",
+      "url": "http://test.host",
+      "votes": 0,
+      "virtual_last_update": "0",
+      "virtual_position": "0",
+      "virtual_scheduled_time": "340282366920938463463374607431768211455",
+      "total_missed": 0,
+      "last_aslot": 0,
+      "last_confirmed_block_num": 0,
+      "pow_worker": 0,
+      "signing_key": "XGT8NEAGHRe83iAurBdK687U1fD9wYqhBs6TWaqr3CPpMDczzf4T7",
+      "props": {
+        "account_creation_fee": {
+          "amount": "0",
+          "precision": 8,
+          "nai": "@@000000021"
+        },
+        "maximum_block_size": 131072
+      },
+      "last_work": "0000000000000000000000000000000000000000000000000000000000000000",
+      "running_version": "0.0.0",
+      "hardfork_version_vote": "0.0.0",
+      "hardfork_time_vote": "2020-04-14T04:53:35"
     }
   ]
 }
@@ -774,22 +595,22 @@ Return version information and chain_id of running node
 ### Procedure:  find_witnesses
 Returns a list of witnesses corresponding to inputted wallet addresses.
 #### Arguments
-* Vector<String> `recoveries` - _List of wallet addresses to retreive associated witnesses._
+* Vector<String> `miners` - _List of wallet addresses to retreive associated witnesses._
 #### Example JSON Payload Format
 ```javascript
 {
-  "recoveries": [
-    "XGT0000000000000"
+  miners: [
+    'XGT0000000000000000000000000000000000000000'
   ]
 }
 ```
 #### Example JSON Response
 ```javascript
 {
-  "witnesses": [
-    {
-      "id": 0,
-      "owner": "XGT0000000000000",
+  "miners": [
+  {
+    "id": 0,
+      "owner": "XGT0000000000000000000000000000000000000000",
       "created": "1970-01-01T00:00:00",
       "url": "",
       "votes": 0,
@@ -797,139 +618,33 @@ Returns a list of witnesses corresponding to inputted wallet addresses.
       "virtual_position": "0",
       "virtual_scheduled_time": "340282366920938463463374607431768211455",
       "total_missed": 0,
-      "last_aslot": 451046,
-      "last_confirmed_block_num": 483,
-      "pow_worker": 0,
-      "signing_key": "XGT6LLegbAgLAy28EHrffBVuANFWcFgmqRMW13wBmTExqFE9SCkg4",
+      "last_aslot": 0,
+      "last_confirmed_block_num": 0,
+      "pow_worker": 93538,
+      "signing_key": "XGT7dDoJbrmueAw431pPbjLDoRhqFCC5Xs5o6f1cZLepWEpkcy3Tc",
       "props": {
         "account_creation_fee": {
-          "amount": "30",
-          "precision": 3,
+          "amount": "0",
+          "precision": 8,
           "nai": "@@000000021"
         },
-        "maximum_block_size": 131072,
-        "sbd_interest_rate": 1000,
-        "account_subsidy_budget": 797,
-        "account_subsidy_decay": 347321
+        "maximum_block_size": 131072
       },
-      "sbd_exchange_rate": {
-        "base": {
-          "amount": "0",
-          "precision": 3,
-          "nai": "@@000000021"
-        },
-        "quote": {
-          "amount": "0",
-          "precision": 3,
-          "nai": "@@000000021"
-        }
-      },
-      "last_sbd_exchange_update": "1970-01-01T00:00:00",
       "last_work": "0000000000000000000000000000000000000000000000000000000000000000",
-      "running_version": "0.23.0",
-      "hardfork_version_vote": "0.23.0",
-      "hardfork_time_vote": "2020-08-21T00:46:40",
-      "available_witness_account_subsidies": 466736
-    }
+      "running_version": "0.0.0",
+      "hardfork_version_vote": "0.0.0",
+      "hardfork_time_vote": "2020-04-14T04:53:35"
+  }
   ]
 }
 ```
 
----
-
-### Procedure:  list_witness_votes
-Retrieves a list of witness votes.
-#### Example JSON Payload Format
-```javascript
-{
-  "start": 0,
-  "limit": 1,
-  "order": "by_name"
-}
-```
-#### Example JSON Response
-```javascript
-{
-  "witnesses": [
-    {
-      "id": 0,
-      "owner": "XGT0000000000000",
-      "created": "1970-01-01T00:00:00",
-      "url": "",
-      "votes": 0,
-      "virtual_last_update": "0",
-      "virtual_position": "0",
-      "virtual_scheduled_time": "340282366920938463463374607431768211455",
-      "total_missed": 0,
-      "last_aslot": 538762,
-      "last_confirmed_block_num": 2,
-      "pow_worker": 0,
-      "signing_key": "XGT6LLegbAgLAy28EHrffBVuANFWcFgmqRMW13wBmTExqFE9SCkg4",
-      "props": {
-        "account_creation_fee": {
-          "amount": "30",
-          "precision": 3,
-          "nai": "@@000000021"
-        },
-        "maximum_block_size": 131072,
-        "sbd_interest_rate": 1000,
-        "account_subsidy_budget": 797,
-        "account_subsidy_decay": 347321
-      },
-      "sbd_exchange_rate": {
-        "base": {
-          "amount": "0",
-          "precision": 3,
-          "nai": "@@000000021"
-        },
-        "quote": {
-          "amount": "0",
-          "precision": 3,
-          "nai": "@@000000021"
-        }
-      },
-      "last_sbd_exchange_update": "1970-01-01T00:00:00",
-      "last_work": "0000000000000000000000000000000000000000000000000000000000000000",
-      "running_version": "0.23.0",
-      "hardfork_version_vote": "0.23.0",
-      "hardfork_time_vote": "2020-08-21T00:46:40",
-      "available_witness_account_subsidies": 0
-    }
-  ]
-}
-```
-
----
-
-### Procedure:  get_active_witnesses
-Returns a list of active witnesses.
-#### Example JSON Payload Format
-```javascript
-{}
-```
-#### Example JSON Response
-```javascript
-{
-  "witnesses": [
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000",
-    "XGT0000000000000"
-  ]
-}
-```
 -------------------------------------------------------------------------------
 
-## Accounts
+## Wallets
 
-### Procedure:  list_accounts
-List accounts ordered by specified key.
+### Procedure:  list_wallets
+List wallets ordered by specified key.
 #### Arguments
 * UInt8 `start` - _ID of first wallet to return._
 * UInt8 `limit` - _Max number of results to return._
@@ -945,7 +660,7 @@ List accounts ordered by specified key.
 #### Example JSON Response
 ```javascript
 ```{
-  "accounts": [
+  "wallets": [
     {
       "id": 4,
       "name": "XGT0000000000000",
@@ -1093,7 +808,7 @@ List accounts ordered by specified key.
       "last_post_edit": "1970-01-01T00:00:00",
       "last_vote_time": "1970-01-01T00:00:00",
       "post_bandwidth": 0,
-      "pending_claimed_accounts": 0,
+      "pending_claimed_wallets": 0,
       "is_smt": false
     }
   ]
@@ -1101,16 +816,16 @@ List accounts ordered by specified key.
 ```
 ---
 
-### Procedure:  find_accounts
+### Procedure:  find_wallets
 Returns list of wallets if inputted wallet addresses exist.
 #### Variables
 
 #### Arguments
-* Array of Strings `accounts` - _Wallet addresses to search for._
+* Array of Strings `wallets` - _Wallet addresses to search for._
 #### Example JSON Payload Format
 ```javascript
 {
-  'accounts': [
+  'wallets': [
     'XGT22NqCrWPExii6'
   ]
 }
@@ -1118,7 +833,7 @@ Returns list of wallets if inputted wallet addresses exist.
 #### Example JSON Response
 ```javascript
 {
-  "accounts": [
+  "wallets": [
     {
       "id": 5,
       "name": "XGT273AkZNcF6Eso",
@@ -1252,7 +967,7 @@ Returns list of wallets if inputted wallet addresses exist.
       "last_post_edit": "1970-01-01T00:00:00",
       "last_vote_time": "1970-01-01T00:00:00",
       "post_bandwidth": 0,
-      "pending_claimed_accounts": 0,
+      "pending_claimed_wallets": 0,
       "is_smt": false
     }
   ]
@@ -1262,7 +977,7 @@ Returns list of wallets if inputted wallet addresses exist.
 ---
 
 ### Procedure:  list_recovery_histories
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1274,7 +989,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  find_recovery_histories
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1286,7 +1001,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  list_account_recovery_requests
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1298,7 +1013,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  find_account_recovery_requests
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1310,7 +1025,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  list_change_recovery_account_requests
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1322,7 +1037,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  find_change_recovery_account_requests
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1334,7 +1049,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  list_escrows
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1346,7 +1061,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  list_escrows
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1358,7 +1073,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  find_escrows
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1370,7 +1085,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  list_withdraw_vesting_routes
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1382,7 +1097,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  find_withdraw_vesting_routes
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1394,7 +1109,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  list_savings_withdrawals
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1406,7 +1121,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  find_savings_withdrawals
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1418,7 +1133,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  list_vesting_delegations
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1430,7 +1145,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  find_vesting_delegations
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1442,7 +1157,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  list_vesting_delegation_expirations
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1454,7 +1169,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  find_vesting_delegation_expirations
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1466,7 +1181,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  list_sbd_conversion_requests
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1478,7 +1193,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  find_sbd_conversion_requests
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1490,7 +1205,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  list_decline_voting_rights_requests
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1502,7 +1217,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  find_decline_voting_rights_requests
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1516,7 +1231,7 @@ List accounts ordered by specified key
 ## Comments
 
 ### Procedure:  list_comments
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1528,7 +1243,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  find_comments
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1540,7 +1255,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  list_votes
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1552,7 +1267,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  find_votes
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1566,7 +1281,7 @@ List accounts ordered by specified key
 ## Market
 
 ### Procedure:  list_limit_orders
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1578,7 +1293,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  find_limit_orders
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1590,7 +1305,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  get_order_book
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1604,7 +1319,7 @@ List accounts ordered by specified key
 ## SPS
 
 ### Procedure:  list_proposals
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1616,7 +1331,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  find_proposals
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1628,7 +1343,7 @@ List accounts ordered by specified key
 ---
 
 ### Procedure:  list_proposal_votes
-List accounts ordered by specified key
+List wallets ordered by specified key
 #### Arguments
 * String `arg1` - _Description_
 * UInt8 `arg2` - _Description_
@@ -1707,7 +1422,7 @@ get_required_signatures to get the minimum subset.
 ---
 
 ### Procedure:  verify_signatures
-This is a general purpose API that checks signatures against accounts for an
+This is a general purpose API that checks signatures against wallets for an
 arbitrary sha256 hash using the existing authority structures in Steem
 #### Arguments
 * String `arg1` - _Description_
@@ -2139,5 +1854,3 @@ Retrieve a list of objects, containing an index and an [API operation object](#a
   ]
 }
 ```
-
-
