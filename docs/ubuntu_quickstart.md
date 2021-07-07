@@ -4,6 +4,8 @@
 
 2. Create a VM with the image from step 1 (process depends on your machine - not covered here)
 
+(These first two steps do not apply if you have a native Linux machine or are using WSL command line)
+
 3. Download/copy .sh file from [this link](https://gist.githubusercontent.com/obskein/fbfd8d87660297e8be7edf01921ab7a8/raw/4a1b03b31814fd96890cfb7401bbf60a8c657a90/install_xgt.sh)
 
 4. `chmod +x install_xgt.sh`
@@ -24,7 +26,34 @@
 10. `rake make`
 	- this will take 10-15 minutes
 
-13. `XGT_WALLET=XGT-Wallet-Address MINING_THREADS=4 XGT_WIF=Your-XGT-Recovery-Private-Key XGT_RECOVERY_PRIVATE_KEY=Your-XGT-Recovery-Private-Key XGT_WITNESS_PRIVATE_KEY=Your-XGT-Recovery-Private-Key XGT_SEED_HOST=98.33.76.100:2001,xgt.rag.pub:2001,xgt2.rag.pub:2001,45.138.27.42:2001,68.129.31.2:2001,116.202.114.157:2001,195.201.167.19:2001 rake run`
+13. `cd ..`
 
-#### _Steps 11-13 must be run from within the xgt directory_
-#### If you encounter problems with `rake run`, try `rake clean` and then repeat steps 11-13
+14. `nano runXGT.sh`
+
+15. Copy and paste the following format into the new file, replacing the empty values with your wallet and private recovery key:
+
+```
+#/bin/sh
+
+export seed_host=98.33.76.100:2001,xgt.rag.pub:2001,xgt2.rag.pub:2001,45.138.27.42:2001,68.129.31.2:2001,116.202.114.157:2001,195.201.167.19:2001
+export wallet_name=your-wallet-address
+export recovery_private=your-private-recovery-key
+export witness_private=your-private-recovery-key
+
+cd xgt &&
+  MINING_DISABLED=FALSE \
+  MINING_THREADS=4 \
+  XGT_INSTANCE_INDEX=1 \
+  XGT_WALLET=$wallet_name \
+  XGT_WIF=$recovery_private \
+  XGT_RECOVERY_PRIVATE_KEY=$recovery_private \
+  XGT_WITNESS_PRIVATE_KEY=$witness_private \
+  XGT_SEED_HOST=$seed_host \
+  rake run
+```
+
+Set `MINING_DISABLED=TRUE` if you are setting up a sync/seed node. The value of `MINING_THREADS` depends on your machine. Run `ctrl-o` to save and `ctrl-x` to exit.
+
+16. `chmod +x runXGT.sh`
+
+17. `./runXGT.sh`
