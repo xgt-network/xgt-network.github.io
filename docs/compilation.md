@@ -47,7 +47,8 @@ sudo apt-get install -y \
      libreadline-dev \
      libyaml-dev \
      libxml2-dev \
-     libxslt-dev
+     libxslt-dev \
+     ninja
 ```
 
 ### Setup Ruby & ruby dependencies in a sane way
@@ -170,32 +171,12 @@ brew install \
     bzip2 \
     ruby-dev \
     ccache \
-    python3
+    python3 \
+    icu4c \
+    ninja
 pip3 install --user jinja2
 ```
 
-### Configure build path
-The following rake commands will configure and build xgt. 
-
-Paths must be set to correct library locations for building.
-
-```
-# Set paths to libraries for building (OS X only)
-brewroot() {
-  ruby -e "puts Dir.glob( %(#{ %x(brew --prefix).chomp }/Cellar/$1/*) ).first"
-}
-export BOOST_ROOT=$(brewroot boost@1.60)
-export OPENSSL_ROOT_DIR=$(brewroot openssl@1.1)
-export SNAPPY_ROOT_DIR=$(brewroot snappy)
-export ZLIB_ROOT_DIR=$(brewroot zlib)
-export BZIP2_ROOT_DIR=$(brewroot bzip2)
-# Then, verify
-echo $BOOST_ROOT
-echo $OPENSSL_ROOT_DIR
-echo $SNAPPY_ROOT_DIR
-echo $ZLIB_ROOT_DIR
-echo $BZIP2_ROOT_DIR
-```
 ### Download and compile
 
 Checkout a fresh copy of XGT, in readiness to compile.
@@ -206,22 +187,7 @@ git checkout master
 cd $HOME/xgt
 
 # Clean & compile
-rake clean
-rake configure
-THREAD_COUNT=4 rake make
-```
-
-It is possible to pull the latest version of the code, a
-```sh
-cd $HOME/xgt
-git pull
-git checkout master
-cd $HOME/xgt
-
-# Clean & compile
-rake clean
-rake configure
-THREAD_COUNT=4 rake make
+rake clean configure make
 ```
 
 ### Configure & Execute 
