@@ -48,7 +48,7 @@ sudo apt-get install -y \
      libyaml-dev \
      libxml2-dev \
      libxslt-dev \
-     ninja
+     ninja-build
 ```
 
 ### Setup Ruby & ruby dependencies in a sane way
