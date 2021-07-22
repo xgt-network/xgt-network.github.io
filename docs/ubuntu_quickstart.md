@@ -19,7 +19,7 @@
 
 7. `sudo gem install xgt-ruby`
 
-8. `cg xgt`
+8. `cd xgt`
 
 9. `rake configure`
 
