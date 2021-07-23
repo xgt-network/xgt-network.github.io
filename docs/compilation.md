@@ -9,7 +9,7 @@ permalink: /compilation/
 ## Ubuntu 20.04 LTS
 
 This process is also available as an installation script; which can be found 
-[here](https://gist.github.com/obskein/fbfd8d87660297e8be7edf01921ab7a8)
+[here](https://gist.github.com/obskein/8efb025cc41e598a4eaa8b9e6ef9aa82)
 
 ### Update system
 
