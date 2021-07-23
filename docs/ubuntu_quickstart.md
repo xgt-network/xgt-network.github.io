@@ -6,7 +6,7 @@
 
 (These first two steps do not apply if you have a native Linux machine or are using WSL command line)
 
-3. Download/copy .sh file from [this link](https://gist.githubusercontent.com/obskein/fbfd8d87660297e8be7edf01921ab7a8/raw/4a1b03b31814fd96890cfb7401bbf60a8c657a90/install_xgt.sh)
+3. Download/copy .sh file from [this link](https://gist.githubusercontent.com/obskein/8efb025cc41e598a4eaa8b9e6ef9aa82/raw/3ccdcf63e873613c998a002f32f34604d8765aea/install_xgt.sh)
 
 4. `chmod +x install_xgt.sh`
 	- must be in the directory where `install_xgt.sh` is located
