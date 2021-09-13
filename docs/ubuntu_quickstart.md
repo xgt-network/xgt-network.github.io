@@ -35,7 +35,6 @@
 ```
 #/bin/sh
 
-export seed_host=98.33.76.100:2001,xgt.rag.pub:2001,xgt2.rag.pub:2001,45.138.27.42:2001,68.129.31.2:2001,116.202.114.157:2001,195.201.167.19:2001
 export wallet_name=your-wallet-address
 export recovery_private=your-private-recovery-key
 export witness_private=your-private-recovery-key
@@ -48,7 +47,6 @@ cd xgt &&
   XGT_WIF=$recovery_private \
   XGT_RECOVERY_PRIVATE_KEY=$recovery_private \
   XGT_WITNESS_PRIVATE_KEY=$witness_private \
-  XGT_SEED_HOST=$seed_host \
   rake run
 ```
 
