@@ -76,7 +76,7 @@ The TXID for that registration:
 
 A Docker run command, for running the miner:
 ```bash
-sudo docker run --publish 8751:8751 --publish 2001:2001 --env XGT_WALLET=XGT3oKtXHRCJhc62YFfBmjpoKP9picBmRfkn77yUPmT --env XGT_RECOVERY_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_WITNESS_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_SEED_HOST=98.33.76.100:2001 rjungemann/xgt:1.4.8
+sudo docker run --publish 8751:8751 --publish 2001:2001 --env XGT_WALLET=XGT3oKtXHRCJhc62YFfBmjpoKP9picBmRfkn77yUPmT --env XGT_RECOVERY_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_WITNESS_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_WIFS=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_SEED_HOST=98.33.76.100:2001 rjungemann/xgt:1.4.8
 ```
 
 The keys that were created:
