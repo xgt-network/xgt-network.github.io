@@ -28,7 +28,7 @@ cumbersome tooling configuration.
 docker pull obskein/xgt-wallet:1.0.7
 ```
 
-3. Run the docker wallet image, in this case connecting to a seed node at 98.33.76.100
+3. Run the docker wallet image, in this case connecting to a seed node at seed-node-1.xgt.co.in
 ```bash
 docker run --env XGT_HOST=http://seed-node-1.xgt.co.in:8751/ -it obskein/xgt-wallet:1.0.7
 ```
@@ -46,7 +46,7 @@ create_mining_wallet
 ```
 {"extensions"=>[], "operations"=>[{"type"=>"witness_update_operation", "value"=>{"owner"=>"XGT3oKtXHRCJhc62YFfBmjpoKP9picBmRfkn77yUPmT", "url"=>"http://test.host", "block_signing_key"=>"XGT6AuTQeopoMyrwcbFhYJdv3G3MimjdVpATh9iVwWcN2TSmd1yYx", "props"=>{"account_creation_fee"=>{:amount=>"0", :precision=>8, :nai=>"@@000000021"}}, "fee"=>{:amount=>"0", :precision=>8, :nai=>"@@000000021"}}}]}
 "4aa587ca9816fd0d25853439e5920129770b91e8"
-"sudo docker run --publish 8751:8751 --publish 2001:2001 --env XGT_WALLET=XGT3oKtXHRCJhc62YFfBmjpoKP9picBmRfkn77yUPmT --env XGT_RECOVERY_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_WITNESS_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_SEED_HOST=98.33.76.100:2001 rjungemann/xgt:1.4.8"
+"sudo docker run --publish 8751:8751 --publish 2001:2001 --env XGT_WALLET=XGT3oKtXHRCJhc62YFfBmjpoKP9picBmRfkn77yUPmT --env XGT_RECOVERY_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_WITNESS_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_SEED_HOST=seed-node-1.xgt.co.in:2001 rjungemann/xgt:1.4.8"
 keys
     master 5KKCemKjiTrxh8NS2vtfWZvzzhhMNHARZYgfvoFkDwZpJh4g91H
     recovery_private 5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86
@@ -76,7 +76,7 @@ The TXID for that registration:
 
 A Docker run command, for running the miner:
 ```bash
-sudo docker run --publish 8751:8751 --publish 2001:2001 --env XGT_WALLET=XGT3oKtXHRCJhc62YFfBmjpoKP9picBmRfkn77yUPmT --env XGT_RECOVERY_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_WITNESS_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_WIFS=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_SEED_HOST=98.33.76.100:2001 rjungemann/xgt:1.4.8
+sudo docker run --publish 8751:8751 --publish 2001:2001 --env XGT_WALLET=XGT3oKtXHRCJhc62YFfBmjpoKP9picBmRfkn77yUPmT --env XGT_RECOVERY_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_WITNESS_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_WIFS=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_SEED_HOST=seed-node-1.xgt.co.in:2001 rjungemann/xgt:1.4.8
 ```
 
 The keys that were created:
@@ -108,7 +108,7 @@ The following command must be updated to use the wallet address AND the wallet r
 keys procured in the previous steps. In this case, `XGT_WALLET` needs to be set to the wallet address, and `XGT_RECOVERY_PRIVATE_KEY` needs to be set to the recovery private address.
 
 ```
-sudo docker run --publish 8751:8751 --publish 2001:2001 --env XGT_WALLET=XGT3oKtXHRCJhc62YFfBmjpoKP9picBmRfkn77yUPmT --env XGT_RECOVERY_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_WITNESS_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_SEED_HOST=98.33.76.100:2001 rjungemann/xgt:1.4.8
+sudo docker run --publish 8751:8751 --publish 2001:2001 --env XGT_WALLET=XGT3oKtXHRCJhc62YFfBmjpoKP9picBmRfkn77yUPmT --env XGT_RECOVERY_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_WITNESS_PRIVATE_KEY=5JsLyFWarvkXQyvXZ2XD3Y9P1WRfmJLyarMfA4PGv3UFAb9eh86 --env XGT_SEED_HOST=seed-node-1.xgt.co.in:2001 rjungemann/xgt:1.4.8
 ```
 
 ### Mining process
