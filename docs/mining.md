@@ -104,7 +104,7 @@ as updates to the client can meaningfully affect network health.
 
 ### Configuring the miner
 To generate the required configuration files, run xgtd.exe and then safely close the program using ctrl+c.
-You can find xgtd data, including config.ini, in %Appdata%\.xgtd.
+You can find xgtd data, including config.ini, in %Appdata%\\.xgtd.
 To configure your miner, make the following changes to the config.ini file and add the credentials from the wallet you created earlier:
 
 1. `# witness =` should be `witness = "WALLET_NAME"` (with "")
@@ -115,7 +115,7 @@ To configure your miner, make the following changes to the config.ini file and a
 
 ### Running the miner
 The miner can be run with or without command line arguments like so:
-`D:\Users\root\Downloads\xgtd --data-dir=D:\xgt-chainstate-0. The following
+`D:\\Users\\root\\Downloads\\xgtd --data-dir=D:\\xgt-chainstate-0. The following
 arguments may be useful for advanced configurations or dealing with
 irregularities in chain behavior:
 
@@ -144,11 +144,11 @@ After installing the correct version of CMake, clone the XGT Github repository a
 4. `rake run`
 
 Wallet credentials can be set as environment variables. Here are the required environment variables:
-- XGT_WALLET=YOUR_WALLET_NAME
-- XGT_WIF=RECOVERY_PRIVATE
-- XGT_RECOVERY_PRIVATE_KEY=RECOVERY_PRIVATE
-- XGT_WITNESS_PRIVATE_KEY=RECOVERY_PRIVATE
-- MINING_DISABLED=FALSE (TRUE for non-mining seed nodes)
+- `XGT_WALLET=YOUR_WALLET_NAME`
+- `XGT_WIF=RECOVERY_PRIVATE`
+- `XGT_RECOVERY_PRIVATE_KEY=RECOVERY_PRIVATE`
+- `XGT_WITNESS_PRIVATE_KEY=RECOVERY_PRIVATE`
+- `MINING_DISABLED=FALSE` (TRUE for non-mining seed nodes)
 
 ## Mining using Docker (Deprecated)
 Downloading and installing the miner is broadly similar in form to the wallet CLI.
