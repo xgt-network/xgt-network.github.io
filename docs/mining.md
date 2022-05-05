@@ -104,7 +104,7 @@ as updates to the client can meaningfully affect network health.
 
 ### Configuring the miner
 To generate the required configuration files, run xgtd.exe and then safely close the program using ctrl+c.
-You can find xgtd data, including config.ini, in %Appdata%\\.xgtd.
+You can find xgtd data, including config.ini, in `%Appdata%\.xgtd`.
 To configure your miner, make the following changes to the config.ini file and add the credentials from the wallet you created earlier:
 
 1. `# witness =` should be `witness = "WALLET_NAME"` (with "")
@@ -115,7 +115,7 @@ To configure your miner, make the following changes to the config.ini file and a
 
 ### Running the miner
 The miner can be run with or without command line arguments like so:
-`D:\\Users\\root\\Downloads\\xgtd --data-dir=D:\\xgt-chainstate-0`. The following
+`D:\Users\root\Downloads\xgtd --data-dir=D:\xgt-chainstate-0`. The following
 arguments may be useful for advanced configurations or dealing with
 irregularities in chain behavior:
 
