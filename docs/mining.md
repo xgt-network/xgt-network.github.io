@@ -5,8 +5,8 @@ permalink: /mining/
 ---
 
 # Mining
-XGT is currently being distributed via Docker to make it easy to get started. A mining - 
-enabled wallet is required to mine XGT at this time.
+The miner is available natively on Windows, Ubuntu, and MacOS. There is also a
+docker miner, but this is now deprecated.
 
 # Overview
 This getting started guide will cover:
@@ -97,7 +97,60 @@ keys
 Will create a series of public and private keypairs, and a wallet address. Additionally, the command
 will also register the address with the network, to enable mining.
 
-## Getting the XGT Miner
+## Mining on Windows
+The Windows miner is available as an executable, requiring minimal
+configuration. Please use the [Latest Release](https://github.com/xgt-network/xgt/releases/download/1.4.9/xgtd.exe),
+as updates to the client can meaningfully affect network health.
+
+### Configuring the miner
+To generate the required configuration files, run xgtd.exe and then safely close the program using ctrl+c.
+You can find xgtd data, including config.ini, in %Appdata%\.xgtd.
+To configure your miner, make the following changes to the config.ini file and add the credentials from the wallet you created earlier:
+
+1. `# witness =` should be `witness = "WALLET_NAME"` (with "")
+2. `# private-key =` should be `private-key = RECOVERY_PRIVATE`
+3. `# mining-reward-key =` should be `mining-reward-key = RECOVERY_PRIVATE` 
+4. Add another line `miner = [WALLET_NAME, RECOVERY_PRIVATE]`
+5. Change the value of `enable-stale-production` from 0 to 1
+
+### Running the miner
+The miner can be run with or without command line arguments like so:
+`D:\Users\root\Downloads\xgtd --data-dir=D:\xgt-chainstate-0. The following
+arguments may be useful for advanced configurations or dealing with
+irregularities in chain behavior:
+
+- Set the data directory: `--data-dir=SOME_DIRECTORY`
+- Rebuild the blockchain from an existing block log: `--replay-blockchain`
+- Recover from unknown transaction state: `--transaction-status-rebuild-state`
+
+### Known issues
+Closing the miner without safely shutting it down using ctrl+c will require a resync.
+Closing the miner during a sync can sometimes cause issues, which can be fixed
+using the --transaction-status-rebuild-state command line argument
+
+## Mining on Ubuntu
+The CMake version was upgraded in
+[1.4.9](https://github.com/xgt-network/xgt/releases/tag/1.4.9). To install the
+correct version of CMake, issue the following commands:
+
+1. `sudo apt remove --purge cmake`
+2. `hash -r`
+3. `sudo snap install cmake --classic`
+
+After installing the correct version of CMake, clone the XGT Github repository and run
+1. `cd xgt` (Go into xgt directory)
+2. `git checkout 1.4.9`
+3. `rake clean configure make`
+4. `rake run`
+
+Wallet credentials can be set as environment variables. Here are the required environment variables:
+- XGT_WALLET=YOUR_WALLET_NAME
+- XGT_WIF=RECOVERY_PRIVATE
+- XGT_RECOVERY_PRIVATE_KEY=RECOVERY_PRIVATE
+- XGT_WITNESS_PRIVATE_KEY=RECOVERY_PRIVATE
+- MINING_DISABLED=FALSE (TRUE for non-mining seed nodes)
+
+## Mining using Docker (Deprecated)
 Downloading and installing the miner is broadly similar in form to the wallet CLI.
 ```bash
 docker pull rjungemann/xgt:1.4.8
