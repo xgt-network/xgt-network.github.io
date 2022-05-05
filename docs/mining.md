@@ -115,7 +115,7 @@ To configure your miner, make the following changes to the config.ini file and a
 
 ### Running the miner
 The miner can be run with or without command line arguments like so:
-`D:\\Users\\root\\Downloads\\xgtd --data-dir=D:\\xgt-chainstate-0. The following
+`D:\\Users\\root\\Downloads\\xgtd --data-dir=D:\\xgt-chainstate-0`. The following
 arguments may be useful for advanced configurations or dealing with
 irregularities in chain behavior:
 
@@ -126,7 +126,7 @@ irregularities in chain behavior:
 ### Known issues
 Closing the miner without safely shutting it down using ctrl+c will require a resync.
 Closing the miner during a sync can sometimes cause issues, which can be fixed
-using the --transaction-status-rebuild-state command line argument
+using the `--transaction-status-rebuild-state` command line argument
 
 ## Mining on Ubuntu
 The CMake version was upgraded in
@@ -148,7 +148,7 @@ Wallet credentials can be set as environment variables. Here are the required en
 - `XGT_WIF=RECOVERY_PRIVATE`
 - `XGT_RECOVERY_PRIVATE_KEY=RECOVERY_PRIVATE`
 - `XGT_WITNESS_PRIVATE_KEY=RECOVERY_PRIVATE`
-- `MINING_DISABLED=FALSE` (TRUE for non-mining seed nodes)
+- `MINING_DISABLED=FALSE` (`TRUE` for non-mining seed nodes)
 
 ## Mining using Docker (Deprecated)
 Downloading and installing the miner is broadly similar in form to the wallet CLI.
