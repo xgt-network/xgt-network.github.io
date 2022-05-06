@@ -139,9 +139,10 @@ correct version of CMake, issue the following commands:
 
 After installing the correct version of CMake, clone the XGT Github repository and run
 1. `cd xgt` (Go into xgt directory)
-2. `git checkout 1.4.9`
-3. `rake clean configure make`
-4. `rake run`
+2. `git pull`
+3. `git checkout 1.4.9`
+4. `rake clean configure make`
+5. `rake run`
 
 Wallet credentials can be set as environment variables. Here are the required environment variables:
 - `XGT_WALLET=YOUR_WALLET_NAME`
