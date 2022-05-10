@@ -51,6 +51,14 @@ sudo apt-get install -y \
      ninja-build
 ```
 
+And install the latest version of cmake if using Ubuntu 20.04 LTS:
+
+```
+sudo apt remove --purge cmake
+hash -r
+sudo snap install cmake --classic
+```
+
 ### Setup Ruby & ruby dependencies in a sane way
 
 Some convenience functions are available using the built in `rake` commands.
